@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   CheckSquare,
+  CreditCard,
   KanbanSquare,
   LayoutDashboard,
   UserPlus,
@@ -20,6 +21,7 @@ const nav = [
   { href: "/leads", label: "Leads", icon: UserPlus },
   { href: "/pipeline", label: "Pipeline", icon: KanbanSquare },
   { href: "/tasks", label: "Tasks", icon: CheckSquare },
+  { href: "/pricing", label: "Subscription", icon: CreditCard },
   { href: "/profile", label: "Profile", icon: UserRound },
 ] as const;
 

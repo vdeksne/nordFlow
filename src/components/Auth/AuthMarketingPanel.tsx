@@ -36,7 +36,7 @@ export function AuthMarketingPanel({
     return (
       <div
         className={cn(
-          "relative hidden overflow-hidden lg:flex lg:flex-col lg:justify-between lg:border-r lg:border-white/[0.04] lg:p-12 xl:p-16",
+          "relative hidden min-h-0 overflow-x-hidden overflow-y-auto lg:flex lg:flex-col lg:justify-between lg:border-r lg:border-white/[0.04] lg:p-12 xl:p-16",
           className,
         )}
       >
@@ -60,14 +60,28 @@ export function AuthMarketingPanel({
           </Link>
         </div>
 
-        <div className="relative mt-auto max-w-[320px] space-y-8 pt-24">
-          <p className="text-foreground text-[clamp(2rem,4vw,2.75rem)] font-light leading-[1.08] tracking-tight">
-            Revenue,
-            <br />
-            <span className="text-primary/95 font-normal">clarified.</span>
-          </p>
+        <div className="relative mt-auto max-w-[min(100%,380px)] space-y-8 pt-24">
+          <div className="space-y-4">
+            <p className="text-foreground text-[clamp(2rem,4vw,2.75rem)] font-light leading-[1.08] tracking-tight">
+              Grants,
+              <br />
+              <span className="text-primary/95 font-normal">without the scramble.</span>
+            </p>
+            <p className="text-muted-foreground text-[13px] leading-relaxed tracking-wide text-pretty">
+              NordFlow helps independent grant consultants automate follow-ups,
+              stay on top of deadlines, and win more work—with less inbox chaos.
+            </p>
+          </div>
+
           <p className="text-muted-foreground text-[13px] leading-relaxed tracking-wide">
-            Demo shell. Wire auth when you ship.
+            <Link
+              href="/pricing"
+              className="text-primary hover:text-primary/85 font-medium underline-offset-4 transition-colors hover:underline"
+            >
+              View pricing
+            </Link>
+            <span className="text-muted-foreground"> · </span>
+            Demo shell — wire billing & auth when you ship.
           </p>
         </div>
 
@@ -80,7 +94,7 @@ export function AuthMarketingPanel({
 
   const headline = "Create your NordFlow workspace";
   const sub =
-    "Mock signup flow, wire Supabase Auth or Clerk when you go live.";
+    "Built for independent grant consultants who want follow-ups on autopilot and a pipeline that stays legible. Wire Supabase Auth or Clerk when you go live.";
 
   return (
     <div

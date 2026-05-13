@@ -206,6 +206,13 @@ export function RegisterForm({ className }: { className?: string }) {
         )}
 
         <p className="text-muted-foreground mt-8 text-center text-sm">
+          <Link
+            href="/pricing"
+            className="text-primary hover:text-primary/85 font-semibold transition-colors"
+          >
+            Pricing
+          </Link>
+          <span className="text-muted-foreground/70 px-2">·</span>
           Already have access?{" "}
           <Link
             href="/login"

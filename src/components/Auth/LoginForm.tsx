@@ -164,6 +164,13 @@ export function LoginForm({ className }: { className?: string }) {
       )}
 
       <p className="text-muted-foreground mt-14 text-center text-[13px]">
+        <Link
+          href="/pricing"
+          className="text-primary hover:text-primary/85 font-medium underline-offset-4 transition-colors hover:underline"
+        >
+          Pricing
+        </Link>
+        <span className="text-muted-foreground/80 px-2">·</span>
         New here?{" "}
         <Link
           href="/register"
