@@ -1,5 +1,5 @@
-import { CrmPage } from "@/components/crm/crm-page";
-import { ProfilePageClient } from "@/components/crm/profile-page-client";
+import { CrmPage } from "@/components/Crm/CrmPage";
+import { ProfilePageClient } from "@/components/Crm/ProfilePageClient";
 
 export default function ProfilePage() {
   return (

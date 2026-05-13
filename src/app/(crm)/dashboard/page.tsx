@@ -1,4 +1,4 @@
-import { DashboardPageClient } from "@/components/crm/dashboard-page-client";
+import { DashboardPageClient } from "@/components/Crm/DashboardPageClient";
 
 export default function DashboardPage() {
   return <DashboardPageClient />;

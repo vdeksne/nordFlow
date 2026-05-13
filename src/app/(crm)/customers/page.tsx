@@ -1,5 +1,5 @@
-import { CustomersPageClient } from "@/components/crm/customers-page-client";
-import { CrmPage } from "@/components/crm/crm-page";
+import { CustomersPageClient } from "@/components/Crm/CustomersPageClient";
+import { CrmPage } from "@/components/Crm/CrmPage";
 
 export default function CustomersPage() {
   return (

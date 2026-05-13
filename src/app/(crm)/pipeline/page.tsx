@@ -1,11 +1,11 @@
-import { CrmPage } from "@/components/crm/crm-page";
-import { PipelinePageClient } from "@/components/crm/pipeline-page-client";
+import { CrmPage } from "@/components/Crm/CrmPage";
+import { PipelinePageClient } from "@/components/Crm/PipelinePageClient";
 
 export default function PipelinePage() {
   return (
     <CrmPage
       title="Pipeline"
-      subtitle="Minimal forecast board, stage spine, weighted totals, and confidence orbits. Hover cards for the aurora edge."
+      subtitle="Forecast board with stage spine and weighted totals. Cards stay calm so you can scan deal health fast."
     >
       <PipelinePageClient />
     </CrmPage>

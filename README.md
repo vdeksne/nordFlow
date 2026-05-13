@@ -1,4 +1,4 @@
-# Nordflow CRM · StartSchool hackathon
+# NordFlow CRM · StartSchool hackathon
 
 A **demo-first CRM web app** focused on a polished **dark, mobile-aware UI**: customer portfolio, leads, pipeline deals, task board, dashboard KPIs, and a **sales copilot preview** (mock assistant + keyboard shortcut). Data for customers, leads, deals, and tasks is stored in **`localStorage`** so the flow works offline without a backend.
 
@@ -10,7 +10,7 @@ The root route redirects to **`/dashboard`**.
 
 | Area | Notes |
 |------|--------|
-| **Dashboard** | Priority strips, charts (Recharts), “live orbit” style KPIs |
+| **Dashboard** | Priority strips, charts (Recharts), live KPI strip |
 | **Customers** | Table / responsive cards, detail sheets, **CSV import** (Papa Parse) |
 | **Leads & pipeline** | Add/edit flows with contextual providers |
 | **Tasks** | Focus board with priorities and momentum UI |
@@ -69,8 +69,13 @@ Open [http://localhost:3000](http://localhost:3000) (redirects to `/dashboard`).
 src/app/
   (crm)/          # Dashboard, customers, leads, pipeline, tasks
   (auth)/         # Login & register previews
-src/components/crm/   # CRM shell: sidebar, top bar, boards, contexts, AI dock
+src/components/
+  Crm/            # CRM shell: sidebar, top bar, boards, contexts, AI dock
+  Ui/             # Shared UI primitives (shadcn-style)
+  Auth/           # Auth marketing + forms
 ```
+
+React component modules use **PascalCase file names** (for example `Button.tsx`, `TopBar.tsx`) so they read as components; shared domain folders are **`Crm`**, **`Ui`**, **`Auth`**. Non-component code under `src/lib/` stays **kebab-case** (for example `customer-portfolio-columns.ts`).
 
 ---
 

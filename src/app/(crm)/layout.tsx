@@ -1,11 +1,11 @@
-import { AiAssistantDock } from "@/components/crm/ai-assistant";
-import { AppSidebar } from "@/components/crm/app-sidebar";
-import { CustomersProvider } from "@/components/crm/customers-context";
-import { DealsProvider } from "@/components/crm/deals-context";
-import { LeadsProvider } from "@/components/crm/leads-context";
-import { MobileNav } from "@/components/crm/mobile-nav";
-import { ProfileProvider } from "@/components/crm/profile-context";
-import { TasksProvider } from "@/components/crm/tasks-context";
+import { AiAssistantDock } from "@/components/Crm/AiAssistant";
+import { AppSidebar } from "@/components/Crm/AppSidebar";
+import { CustomersProvider } from "@/components/Crm/CustomersContext";
+import { DealsProvider } from "@/components/Crm/DealsContext";
+import { LeadsProvider } from "@/components/Crm/LeadsContext";
+import { MobileNav } from "@/components/Crm/MobileNav";
+import { ProfileProvider } from "@/components/Crm/ProfileContext";
+import { TasksProvider } from "@/components/Crm/TasksContext";
 
 export default function CrmLayout({
   children,

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
-import { AuthMarketingPanel } from "@/components/auth/auth-marketing-panel";
-import { LoginForm } from "@/components/auth/login-form";
+import { AuthMarketingPanel } from "@/components/Auth/AuthMarketingPanel";
+import { LoginForm } from "@/components/Auth/LoginForm";
 
 export const metadata: Metadata = {
   title: "Sign in",
-  description: "Nordflow CRM · demo login shell (no backend).",
+  description: "NordFlow CRM · demo login shell (no backend).",
 };
 
 export default function LoginPage() {

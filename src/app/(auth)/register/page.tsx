@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
-import { AuthMarketingPanel } from "@/components/auth/auth-marketing-panel";
-import { RegisterForm } from "@/components/auth/register-form";
+import { AuthMarketingPanel } from "@/components/Auth/AuthMarketingPanel";
+import { RegisterForm } from "@/components/Auth/RegisterForm";
 
 export const metadata: Metadata = {
   title: "Register",
-  description: "Nordflow CRM · demo registration shell (no backend).",
+  description: "NordFlow CRM · demo registration shell (no backend).",
 };
 
 export default function RegisterPage() {

@@ -50,72 +50,72 @@
 }
 
 :root {
-  /* Near-black blue + luminous teal (evolved from CRM_Hackatons palette) */
-  --background: #020510;
+  /* Near-black blue + luminous teal — editorial / luxury contrast */
+  --background: #01040d;
   --foreground: #e8edf7;
-  --card: #070f24;
+  --card: #050b18;
   --card-foreground: #e8edf7;
-  --popover: #0a142c;
+  --popover: #070f1c;
   --popover-foreground: #e8edf7;
   --primary: #2dc9d1;
-  --primary-foreground: #020510;
-  --secondary: #111d38;
+  --primary-foreground: #01040d;
+  --secondary: #0c1628;
   --secondary-foreground: #e8edf7;
-  --muted: #101b34;
+  --muted: #0a1424;
   --muted-foreground: #8b9cbc;
-  --accent: #162547;
+  --accent: #101e36;
   --accent-foreground: #e8edf7;
   --destructive: oklch(0.58 0.22 25);
-  --border: rgb(148 163 184 / 0.09);
-  --input: #141f38;
+  --border: rgb(148 163 184 / 0.08);
+  --input: #101a2e;
   --ring: #2dc9d1;
   --chart-1: #2dc9d1;
   --chart-2: #188a91;
   --chart-3: #3d5a8f;
   --chart-4: color-mix(in oklab, #2dc9d1 55%, #e8edf7);
-  --chart-5: color-mix(in oklab, #188a91 65%, #020510);
-  --radius: 0.875rem;
-  --sidebar: #020818;
+  --chart-5: color-mix(in oklab, #188a91 65%, #01040d);
+  --radius: 0px;
+  --sidebar: #01040d;
   --sidebar-foreground: #e8edf7;
   --sidebar-primary: #2dc9d1;
-  --sidebar-primary-foreground: #020510;
-  --sidebar-accent: #0d182f;
+  --sidebar-primary-foreground: #01040d;
+  --sidebar-accent: #0a1424;
   --sidebar-accent-foreground: #e8edf7;
-  --sidebar-border: rgb(148 163 184 / 0.07);
+  --sidebar-border: rgb(148 163 184 / 0.06);
   --sidebar-ring: #2dc9d1;
 }
 
 .dark {
-  --background: #020510;
+  --background: #01040d;
   --foreground: #e8edf7;
-  --card: #070f24;
+  --card: #050b18;
   --card-foreground: #e8edf7;
-  --popover: #0a142c;
+  --popover: #070f1c;
   --popover-foreground: #e8edf7;
   --primary: #2dc9d1;
-  --primary-foreground: #020510;
-  --secondary: #111d38;
+  --primary-foreground: #01040d;
+  --secondary: #0c1628;
   --secondary-foreground: #e8edf7;
-  --muted: #101b34;
+  --muted: #0a1424;
   --muted-foreground: #8b9cbc;
-  --accent: #162547;
+  --accent: #101e36;
   --accent-foreground: #e8edf7;
   --destructive: oklch(0.58 0.22 25);
-  --border: rgb(148 163 184 / 0.09);
-  --input: #141f38;
+  --border: rgb(148 163 184 / 0.08);
+  --input: #101a2e;
   --ring: #2dc9d1;
   --chart-1: #2dc9d1;
   --chart-2: #188a91;
   --chart-3: #3d5a8f;
   --chart-4: color-mix(in oklab, #2dc9d1 55%, #e8edf7);
-  --chart-5: color-mix(in oklab, #188a91 65%, #020510);
-  --sidebar: #020818;
+  --chart-5: color-mix(in oklab, #188a91 65%, #01040d);
+  --sidebar: #01040d;
   --sidebar-foreground: #e8edf7;
   --sidebar-primary: #2dc9d1;
-  --sidebar-primary-foreground: #020510;
-  --sidebar-accent: #0d182f;
+  --sidebar-primary-foreground: #01040d;
+  --sidebar-accent: #0a1424;
   --sidebar-accent-foreground: #e8edf7;
-  --sidebar-border: rgb(148 163 184 / 0.07);
+  --sidebar-border: rgb(148 163 184 / 0.06);
   --sidebar-ring: #2dc9d1;
 }
 
@@ -125,83 +125,19 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    background-image:
-      radial-gradient(
-        120% 85% at 50% -30%,
-        color-mix(in oklab, var(--primary) 13%, transparent),
-        transparent 55%
+    background-image: radial-gradient(
+        120% 70% at 50% -35%,
+        color-mix(in oklab, var(--primary) 5%, transparent),
+        transparent 52%
       ),
       radial-gradient(
-        ellipse 100% 55% at 100% 100%,
-        color-mix(in oklab, #3d5a8f 11%, transparent),
-        transparent 50%
+        ellipse 90% 50% at 100% 100%,
+        color-mix(in oklab, #3d5a8f 5%, transparent),
+        transparent 48%
       );
     background-attachment: fixed;
   }
   html {
     @apply font-sans;
-  }
-}
-
-/* Pipeline board, aurora hover + flow spine */
-@keyframes pipeline-aurora-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes pipeline-flow-shift {
-  0%,
-  100% {
-    opacity: 0.28;
-    background-position: 0% 50%;
-  }
-  50% {
-    opacity: 0.85;
-    background-position: 100% 50%;
-  }
-}
-
-@keyframes pipeline-node-glow {
-  0%,
-  100% {
-    box-shadow:
-      0 0 0 1px color-mix(in oklab, var(--primary) 35%, transparent),
-      0 0 18px -6px color-mix(in oklab, var(--primary) 45%, transparent);
-  }
-  50% {
-    box-shadow:
-      0 0 0 1px color-mix(in oklab, var(--primary) 55%, transparent),
-      0 0 28px -4px color-mix(in oklab, var(--primary) 55%, transparent);
-  }
-}
-
-@layer utilities {
-  .pipeline-deal-aurora {
-    background: conic-gradient(
-      from 140deg at 50% 50%,
-      transparent 0%,
-      color-mix(in oklab, var(--primary) 55%, transparent) 28%,
-      color-mix(in oklab, var(--chart-3) 40%, transparent) 52%,
-      transparent 72%
-    );
-    animation: pipeline-aurora-spin 7s linear infinite;
-  }
-
-  .pipeline-flow-beam {
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      color-mix(in oklab, var(--primary) 55%, transparent) 48%,
-      color-mix(in oklab, var(--chart-3) 35%, transparent) 52%,
-      transparent 100%
-    );
-    background-size: 240% 100%;
-    animation: pipeline-flow-shift 5s ease-in-out infinite;
-    opacity: 0.45;
-  }
-
-  .pipeline-node-hot {
-    animation: pipeline-node-glow 3.2s ease-in-out infinite;
   }
 }

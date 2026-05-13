@@ -101,3 +101,45 @@ export function portfolioCellValue(
   const s = String(raw).trim();
   return s === "" ? "-" : s;
 }
+
+/** Raw field has a non-empty stored value (before display formatting). */
+export function portfolioColumnHasValue(
+  row: CustomerPortfolio,
+  col: PortfolioColumnDef,
+): boolean {
+  const raw = row[col.key];
+  if (raw === null || raw === undefined) return false;
+  if (typeof raw === "number") return true;
+  return String(raw).trim() !== "";
+}
+
+const ALWAYS_VISIBLE_PORTFOLIO_KEYS = new Set<keyof CustomerPortfolio>([
+  "nr",
+  "companyName",
+  "registrationNumber",
+]);
+
+/** Header group title for a column definition (spreadsheet layout order). */
+export function portfolioGroupTitleForColumn(col: PortfolioColumnDef): string {
+  const idx = CUSTOMER_PORTFOLIO_COLUMNS.indexOf(col);
+  return idx === -1 ? "" : portfolioGroupAt(idx);
+}
+
+/**
+ * Columns to show in the portfolio table: core identifiers plus any column
+ * that has at least one non-empty value in `rows`.
+ */
+export function visibleCustomerPortfolioColumns(
+  rows: CustomerPortfolio[],
+): PortfolioColumnDef[] {
+  if (rows.length === 0) {
+    return CUSTOMER_PORTFOLIO_COLUMNS.filter((c) =>
+      ALWAYS_VISIBLE_PORTFOLIO_KEYS.has(c.key),
+    );
+  }
+  return CUSTOMER_PORTFOLIO_COLUMNS.filter(
+    (col) =>
+      ALWAYS_VISIBLE_PORTFOLIO_KEYS.has(col.key) ||
+      rows.some((row) => portfolioColumnHasValue(row, col)),
+  );
+}

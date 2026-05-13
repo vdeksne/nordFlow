@@ -1,11 +1,11 @@
-import { CrmPage } from "@/components/crm/crm-page";
-import { TasksBoard } from "@/components/crm/tasks-board";
+import { CrmPage } from "@/components/Crm/CrmPage";
+import { TasksBoard } from "@/components/Crm/TasksBoard";
 
 export default function TasksPage() {
   return (
     <CrmPage
       title="Tasks"
-      subtitle="Minimal focus board, glow cards, momentum orbit, and a calm spine. Tick wins; hover for the aurora edge."
+      subtitle="Minimal focus board with priority lanes and due clarity. Tick wins and stay ahead of the queue."
     >
       <TasksBoard />
     </CrmPage>

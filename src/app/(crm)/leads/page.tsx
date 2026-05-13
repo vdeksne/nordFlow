@@ -1,5 +1,5 @@
-import { CrmPage } from "@/components/crm/crm-page";
-import { LeadsPageClient } from "@/components/crm/leads-page-client";
+import { CrmPage } from "@/components/Crm/CrmPage";
+import { LeadsPageClient } from "@/components/Crm/LeadsPageClient";
 
 export default function LeadsPage() {
   return (
