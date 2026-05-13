@@ -2,13 +2,14 @@ import {
   ArrowUpRight,
   Briefcase,
   Gauge,
-  ListTodo,
   Sparkles,
   TrendingUp,
-  Users,
 } from "lucide-react";
 
 import { CrmPage } from "@/components/crm/crm-page";
+import { DashboardCharts } from "@/components/crm/dashboard-charts";
+import { OpenTasksStatCard } from "@/components/crm/open-tasks-stat-card";
+import { PortfolioFeesStatCard } from "@/components/crm/portfolio-fees-stat-card";
 import { StatCard } from "@/components/crm/stat-card";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -26,7 +27,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { customers, deals, leads, tasks } from "@/lib/crm/mock-data";
+import { deals, leads } from "@/lib/crm/mock-data";
 import { formatEur } from "@/lib/format";
 
 export default function DashboardPage() {
@@ -38,7 +39,6 @@ export default function DashboardPage() {
     (sum, d) => sum + d.valueEur * (d.probability / 100),
     0,
   );
-  const openTasks = tasks.filter((t) => !t.done).length;
 
   const spotlight = [...leads]
     .sort((a, b) => b.valueEur - a.valueEur)
@@ -47,7 +47,7 @@ export default function DashboardPage() {
   return (
     <CrmPage
       title="Executive overview"
-      subtitle="Live pulse across pipeline velocity, active leads, and customer health — wired for Supabase when you connect credentials."
+      subtitle="Momentum cockpit with live charts — pipeline upside, revenue mix, funnel heat, and execution rings fueled by your customers & tasks."
     >
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <StatCard
@@ -57,14 +57,7 @@ export default function DashboardPage() {
           icon={TrendingUp}
           trend={{ label: `${openPipeline.length} active deals`, positive: true }}
         />
-        <StatCard
-          title="Portfolio fees (EUR)"
-          value={formatEur(
-            customers.reduce((s, c) => s + (c.feeEur ?? 0), 0),
-          )}
-          hint={`${customers.length} klientu kartītes · līgumu maksa`}
-          icon={Users}
-        />
+        <PortfolioFeesStatCard />
         <StatCard
           title="Qualified leads"
           value={`${leads.filter((l) => l.stage === "qualified").length}/${leads.length}`}
@@ -72,14 +65,10 @@ export default function DashboardPage() {
           icon={Sparkles}
           trend={{ label: "Sync leads table in Supabase", positive: true }}
         />
-        <StatCard
-          title="Follow-ups due"
-          value={`${openTasks}`}
-          hint="Tasks still marked incomplete."
-          icon={ListTodo}
-          trend={{ label: "Assign owners from Tasks module", positive: false }}
-        />
+        <OpenTasksStatCard />
       </section>
+
+      <DashboardCharts deals={deals} leads={leads} />
 
       <section className="grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         <Card className="border-sidebar-border bg-card/85 shadow-none">
