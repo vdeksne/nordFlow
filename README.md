@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nordflow CRM · StartSchool hackathon
 
-## Getting Started
+A **demo-first CRM web app** focused on a polished **dark, mobile-aware UI**: customer portfolio, leads, pipeline deals, task board, dashboard KPIs, and a **sales copilot preview** (mock assistant + keyboard shortcut). Data for customers, leads, deals, and tasks is stored in **`localStorage`** so the flow works offline without a backend.
 
-First, run the development server:
+The root route redirects to **`/dashboard`**.
+
+---
+
+## Features
+
+| Area | Notes |
+|------|--------|
+| **Dashboard** | Priority strips, charts (Recharts), “live orbit” style KPIs |
+| **Customers** | Table / responsive cards, detail sheets, **CSV import** (Papa Parse) |
+| **Leads & pipeline** | Add/edit flows with contextual providers |
+| **Tasks** | Focus board with priorities and momentum UI |
+| **Auth (preview)** | `/login` and `/register` UI (mock; no real sessions) |
+| **AI assistant (preview)** | Floating dock + sheet (⌘K / Ctrl+K), canned “next revenue move” style replies |
+| **Storybook** | Component docs and isolated previews |
+
+---
+
+## Tech stack
+
+| Layer | Choices |
+|-------|---------|
+| **Framework** | [Next.js](https://nextjs.org) **16** (App Router), **React 19**, TypeScript |
+| **Styling** | [Tailwind CSS](https://tailwindcss.com) **v4**, [`tw-animate-css`](https://github.com/Wombosvideo/tw-animate-css) |
+| **UI primitives** | [@base-ui/react](https://base-ui.com/react/overview/quick-start), [`class-variance-authority`](https://cva.style/docs), [`tailwind-merge`](https://github.com/dcastil/tailwind-merge), [`clsx`](https://github.com/lukeed/clsx), [`shadcn`](https://ui.shadcn.com/) tooling |
+| **Icons** | [Lucide React](https://lucide.dev) |
+| **Charts** | [Recharts](https://recharts.org) |
+| **CSV** | [Papa Parse](https://www.papaparse.com) |
+| **Quality / docs** | ESLint (`eslint-config-next`), [Storybook](https://storybook.js.org) **10**, Vitest + Playwright (Storybook addon) |
+| **Bundler (dev)** | Turbopack via `next dev` |
+| **Fonts** | [Figtree](https://fonts.google.com/specimen/Figtree) via `next/font/google` |
+
+**Optional / scaffold:** [`@supabase/supabase-js`](https://supabase.com/docs/reference/javascript) is listed as a dependency with a small client helper (`src/lib/supabase/client.ts`) for future backend wiring; the current CRM demo does not require Supabase env vars to run.
+
+---
+
+## Scripts
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev              # Next.js dev server → http://localhost:3000
+npm run build            # Production build
+npm run start            # Run production server
+npm run lint             # ESLint
+
+npm run storybook        # Storybook → http://localhost:6006
+npm run build-storybook  # Static Storybook build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Getting started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000) (redirects to `/dashboard`).
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project layout (high level)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/app/
+  (crm)/          # Dashboard, customers, leads, pipeline, tasks
+  (auth)/         # Login & register previews
+src/components/crm/   # CRM shell: sidebar, top bar, boards, contexts, AI dock
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Works on [Vercel](https://vercel.com) or any host that supports Next.js. See the [Next.js deployment docs](https://nextjs.org/docs/app/building-your-application/deploying).
