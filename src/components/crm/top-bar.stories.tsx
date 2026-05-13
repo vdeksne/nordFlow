@@ -9,7 +9,7 @@ const meta = {
   args: {
     title: "Executive overview",
     subtitle:
-      "Pulse across pipeline, klientu portfelis, leads un uzdevumi.",
+      "Pulse across pipeline, customer portfolio, leads, and tasks.",
   },
 } satisfies Meta<typeof TopBar>;
 
@@ -21,7 +21,7 @@ export const Default: Story = {};
 
 export const NarrowTitle: Story = {
   args: {
-    title: "Klientu portfelis",
+    title: "Customer portfolio",
     subtitle: undefined,
   },
 };

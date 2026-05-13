@@ -35,7 +35,7 @@ export function CustomerPortfolioTable({
   return (
     <div
       className={cn(
-        "border-sidebar-border overflow-hidden rounded-xl border border-white/[0.06] bg-[color-mix(in_oklab,var(--card)_90%,transparent)]",
+        "border-sidebar-border hidden overflow-hidden rounded-xl border border-white/[0.06] bg-[color-mix(in_oklab,var(--card)_90%,transparent)] md:block",
         className,
       )}
     >
@@ -84,7 +84,7 @@ export function CustomerPortfolioTable({
                 row.companyName?.trim() ||
                 (row.registrationNumber != null
                   ? String(row.registrationNumber)
-                  : "Klients");
+                  : "Client");
 
               return (
                 <TableRow
@@ -118,7 +118,7 @@ export function CustomerPortfolioTable({
                       : undefined
                   }
                   aria-label={
-                    onRowClick ? `Atvērt kartīti: ${label}` : undefined
+                    onRowClick ? `Open record: ${label}` : undefined
                   }
                 >
                 {CUSTOMER_PORTFOLIO_COLUMNS.map((col) => {

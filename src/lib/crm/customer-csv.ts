@@ -87,7 +87,7 @@ function parseCell(
   raw: string,
 ): string | number | null {
   const t = raw.trim();
-  if (t === "" || t === "—") {
+  if (t === "" || t === "-" || t === "\u2014") {
     return null;
   }
   if (NUMERIC_KEYS.has(key)) {

@@ -14,7 +14,7 @@ export function PortfolioFeesStatCard() {
     <StatCard
       title="Portfolio fees (EUR)"
       value={formatEur(total)}
-      hint={`${customers.length} klientu kartītes · līgumu maksa`}
+      hint={`${customers.length} customer record${customers.length === 1 ? "" : "s"} · contract fees`}
       icon={Users}
     />
   );

@@ -3,6 +3,7 @@
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import { XIcon } from "lucide-react";
 
+import { NordflowLogo } from "@/components/crm/nordflow-logo";
 import { Button } from "@/components/ui/button";
 import {
   portfolioCellValue,
@@ -41,29 +42,33 @@ export function CustomerDetailFullscreen({
           )}
         >
           <DialogPrimitive.Title className="sr-only">
-            {customer?.companyName?.trim() || "Klienta kartīte"}
+            {customer?.companyName?.trim() || "Customer record"}
           </DialogPrimitive.Title>
           <DialogPrimitive.Description className="sr-only">
-            Pilna klienta kartīte no portfeļa reģistra.
+            Full customer record from the portfolio register.
           </DialogPrimitive.Description>
 
           {customer ? (
             <>
-              <header className="border-sidebar-border flex shrink-0 items-start justify-between gap-4 border-b border-white/[0.06] px-5 py-5 sm:px-10">
-                <div className="min-w-0 space-y-1">
+              <header className="border-sidebar-border flex shrink-0 items-start justify-between gap-3 border-b border-white/[0.06] px-4 py-4 sm:gap-4 sm:px-10 sm:py-5">
+                <div className="min-w-0 flex-1 space-y-2">
+                  <NordflowLogo
+                    compact
+                    className="max-h-5 max-w-[88px] opacity-90"
+                  />
                   <p className="text-primary text-[11px] font-semibold tracking-[0.14em] uppercase">
-                    Klienta kartīte
+                    Customer record
                   </p>
-                  <h2 className="text-foreground truncate text-2xl font-semibold tracking-tight sm:text-3xl">
-                    {customer.companyName ?? "—"}
+                  <h2 className="text-foreground line-clamp-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
+                    {customer.companyName ?? "-"}
                   </h2>
-                  <p className="text-muted-foreground text-sm tabular-nums">
+                  <p className="text-muted-foreground text-xs tabular-nums sm:text-sm">
                     Reg. Nr.{" "}
                     <span className="text-foreground font-medium">
                       {customer.registrationNumber != null &&
                       customer.registrationNumber !== ""
                         ? String(customer.registrationNumber)
-                        : "—"}
+                        : "-"}
                     </span>
                     {customer.nr != null ? (
                       <>
@@ -81,8 +86,8 @@ export function CustomerDetailFullscreen({
                     <Button
                       variant="outline"
                       size="icon-sm"
-                      className="border-white/[0.1] shrink-0 rounded-xl"
-                      aria-label="Aizvērt"
+                      className="border-white/[0.1] size-11 min-h-[44px] min-w-[44px] shrink-0 rounded-xl sm:size-9 sm:min-h-0 sm:min-w-0"
+                      aria-label="Close"
                     />
                   }
                 >
@@ -90,8 +95,8 @@ export function CustomerDetailFullscreen({
                 </DialogPrimitive.Close>
               </header>
 
-              <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-8 sm:px-10 sm:py-10">
-                <div className="mx-auto max-w-6xl space-y-12 pb-16">
+              <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-6 pb-28 sm:px-10 sm:py-10 sm:pb-16">
+                <div className="mx-auto max-w-6xl space-y-12 pb-6 sm:pb-16">
                   {groups.map((group) => (
                     <section key={group.title} className="space-y-5">
                       <h3 className="text-primary border-sidebar-border border-b border-white/[0.06] pb-2 text-[11px] font-semibold tracking-[0.18em] uppercase">
@@ -122,7 +127,7 @@ export function CustomerDetailFullscreen({
             </>
           ) : (
             <div className="text-muted-foreground flex flex-1 items-center justify-center p-12 text-sm">
-              Nav izvēlēta kartīte.
+              No record selected.
             </div>
           )}
         </DialogPrimitive.Popup>

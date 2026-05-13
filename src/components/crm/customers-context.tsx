@@ -14,7 +14,8 @@ import { mergeIntoCustomerPortfolio } from "@/lib/crm/customer-csv";
 import { customers as seedCustomers } from "@/lib/crm/mock-data";
 import type { CustomerPortfolio } from "@/lib/crm/types";
 
-const STORAGE_KEY = "crm-customers-v1";
+/** Bump when seed data shape/count changes so browsers pick up new demo rows. */
+const STORAGE_KEY = "crm-customers-v2";
 
 function loadStored(): CustomerPortfolio[] | null {
   if (typeof window === "undefined") return null;

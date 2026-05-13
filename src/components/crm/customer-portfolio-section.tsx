@@ -3,6 +3,7 @@
 import { useCallback, useState } from "react";
 
 import { CustomerDetailFullscreen } from "@/components/crm/customer-detail-fullscreen";
+import { CustomerPortfolioMobileList } from "@/components/crm/customer-portfolio-mobile-list";
 import { CustomerPortfolioTable } from "@/components/crm/customer-portfolio-table";
 import type { CustomerPortfolio } from "@/lib/crm/types";
 
@@ -28,14 +29,23 @@ export function CustomerPortfolioSection({
     }
   }, []);
 
+  const openRow = useCallback((row: CustomerPortfolio) => {
+    setSelectedId(row.id);
+  }, []);
+
   return (
     <>
+      <CustomerPortfolioMobileList
+        rows={rows}
+        selectedId={selectedId}
+        onRowClick={openRow}
+      />
       <CustomerPortfolioTable
         rows={rows}
         scrollMaxHeightClass={scrollMaxHeightClass}
         className={className}
         selectedId={selectedId}
-        onRowClick={(row) => setSelectedId(row.id)}
+        onRowClick={openRow}
       />
       <CustomerDetailFullscreen
         customer={selected}

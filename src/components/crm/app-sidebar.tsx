@@ -6,11 +6,11 @@ import {
   CheckSquare,
   KanbanSquare,
   LayoutDashboard,
-  Sparkles,
   UserPlus,
   Users,
 } from "lucide-react";
 
+import { NordflowLogo } from "@/components/crm/nordflow-logo";
 import { cn } from "@/lib/utils";
 
 const nav = [
@@ -27,13 +27,17 @@ export function AppSidebar() {
   return (
     <aside className="border-sidebar-border bg-sidebar text-sidebar-foreground shadow-[inset_-1px_0_0_rgb(255_255_255/0.04)] flex h-full w-full flex-col border-r">
       <div className="flex items-center gap-3 px-5 py-7">
-        <span className="bg-primary text-primary-foreground shadow-[0_0_28px_-4px_color-mix(in_oklab,var(--primary)_65%,transparent)] inline-flex size-10 items-center justify-center rounded-xl">
-          <Sparkles className="size-[18px]" aria-hidden />
-        </span>
-        <div className="leading-tight">
-          <p className="text-[13px] font-semibold tracking-tight">CRM Workspace</p>
+        <Link
+          href="/dashboard"
+          className="focus-visible:ring-primary shrink-0 rounded-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar focus-visible:outline-none"
+          aria-label="Nordflow · Dashboard"
+        >
+          <NordflowLogo priority />
+        </Link>
+        <div className="min-w-0 leading-tight">
+          <p className="text-[13px] font-semibold tracking-tight">Nordflow CRM</p>
           <p className="text-muted-foreground text-[11px] tracking-wide uppercase">
-            Hackathon
+            Workspace
           </p>
         </div>
       </div>
@@ -65,9 +69,18 @@ export function AppSidebar() {
       </nav>
 
       <div className="border-sidebar-border mt-auto border-t border-white/[0.04] px-5 py-5">
+        <div className="mb-3 flex items-center gap-2 opacity-90">
+          <NordflowLogo compact className="max-h-5 max-w-[72px]" />
+        </div>
         <p className="text-muted-foreground text-[11px] leading-relaxed">
           Connect Supabase to sync accounts. MVP ships with curated demo data.
         </p>
+        <Link
+          href="/login"
+          className="text-primary hover:text-primary/85 mt-3 inline-flex text-[11px] font-semibold tracking-wide transition-colors"
+        >
+          Preview login →
+        </Link>
       </div>
     </aside>
   );

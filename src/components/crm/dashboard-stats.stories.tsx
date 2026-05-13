@@ -29,7 +29,7 @@ function DashboardStatsDemo() {
         value={formatEur(
           customers.reduce((s, c) => s + (c.feeEur ?? 0), 0),
         )}
-        hint={`${customers.length} klientu kartītes · līgumu maksa`}
+        hint={`${customers.length} customer record${customers.length === 1 ? "" : "s"} · contract fees`}
         icon={Users}
       />
       <StatCard

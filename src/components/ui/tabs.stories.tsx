@@ -18,13 +18,13 @@ function TabsDemo() {
         <TabsTrigger value="billing">Billing</TabsTrigger>
       </TabsList>
       <TabsContent value="overview" className="text-muted-foreground">
-        Konteksta kartītes un KPI — kā Dashboard augšējā daļā.
+        Context cards and KPIs, similar to the top section of the Dashboard.
       </TabsContent>
       <TabsContent value="activity" className="text-muted-foreground">
         Event stream placeholder (Supabase sync).
       </TabsContent>
       <TabsContent value="billing" className="text-muted-foreground">
-        Fee EUR un rēķinu sadalījums no klientu portfeļa.
+        Fee EUR and invoice breakdown from the customer portfolio.
       </TabsContent>
     </Tabs>
   );

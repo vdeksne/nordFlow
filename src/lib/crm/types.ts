@@ -11,7 +11,7 @@ export type Lead = {
   updatedAt: string;
 };
 
-/** Mirrors sheet «KLIENTU PORTFELIS» — Klientu uzskaites reģistrs_template.xlsx */
+/** Mirrors the CLIENT PORTFOLIO sheet column layout (spreadsheet template). */
 export type CustomerPortfolio = {
   id: string;
   nr: number | null;

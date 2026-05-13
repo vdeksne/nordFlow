@@ -271,7 +271,7 @@ export function TasksBoard() {
     const total = tasks.length || 1;
     const momentum = Math.round((sortedDone.length / total) * 100);
 
-    let nextLabel = "—";
+    let nextLabel = "-";
     if (sortedOpen[0]) {
       nextLabel = new Intl.DateTimeFormat("en-GB", {
         weekday: "short",
@@ -297,7 +297,7 @@ export function TasksBoard() {
     <div className="space-y-10">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-muted-foreground/90 max-w-2xl text-center text-[13px] font-medium leading-relaxed tracking-tight md:text-left">
-          One calm lane at a time. Tick the small wins — momentum compounds.
+          One calm lane at a time. Tick the small wins, momentum compounds.
         </p>
         <AddTaskSheet />
       </div>
@@ -322,7 +322,7 @@ export function TasksBoard() {
           <div className="mt-1 flex items-center gap-3">
             <MomentumOrbit value={stats.momentum} />
             <p className="text-muted-foreground text-[11px] leading-snug tracking-wide">
-              Closed tasks fuel the orbit — keep closing loops.
+              Closed tasks fuel the orbit, keep closing loops.
             </p>
           </div>
         </div>
@@ -387,7 +387,7 @@ export function TasksBoard() {
                   Today
                 </h2>
                 <p className="text-muted-foreground mt-0.5 text-[11px] tracking-wide">
-                  Ship what&apos;s due — clarity beats volume.
+                  Ship what&apos;s due, clarity beats volume.
                 </p>
               </div>
               <span className="text-muted-foreground text-[11px] tabular-nums">
@@ -397,7 +397,7 @@ export function TasksBoard() {
             </header>
             <div className="flex flex-col gap-3">
               {todayTasks.length === 0 ? (
-                <EmptyLane label="Nothing due today — grab something ahead or celebrate the quiet." />
+                <EmptyLane label="Nothing due today, grab something ahead or celebrate the quiet." />
               ) : (
                 todayTasks.map((task) => (
                   <div
@@ -422,7 +422,7 @@ export function TasksBoard() {
                   Ahead
                 </h2>
                 <p className="text-muted-foreground mt-0.5 text-[11px] tracking-wide">
-                  Queue with intention — protect deep work.
+                  Queue with intention, protect deep work.
                 </p>
               </div>
               <span className="text-muted-foreground text-[11px] tabular-nums">
@@ -432,7 +432,7 @@ export function TasksBoard() {
             </header>
             <div className="flex flex-col gap-3">
               {aheadTasks.length === 0 ? (
-                <EmptyLane label="Your runway is clear — add the next meaningful touch." />
+                <EmptyLane label="Your runway is clear, add the next meaningful touch." />
               ) : (
                 aheadTasks.map((task) => (
                   <div
@@ -478,7 +478,7 @@ export function TasksBoard() {
               Recent logged
             </h3>
             {doneTasks.length === 0 ? (
-              <EmptyLane label="Finish one task — your first win shows up here." />
+              <EmptyLane label="Finish one task, your first win shows up here." />
             ) : (
               <div className="flex flex-col gap-2.5">
                 {doneTasks.map((task) => (

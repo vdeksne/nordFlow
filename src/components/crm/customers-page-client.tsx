@@ -10,7 +10,7 @@ export function CustomersPageClient() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
         <AddCustomerSheet />
         <ImportCustomersCsvSheet />
       </div>

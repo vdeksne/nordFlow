@@ -8,7 +8,7 @@ const meta = {
   args: {
     title: "Page shell",
     subtitle:
-      "Augša ir vienota navigācija (TopBar); zemāk slots saturam.",
+      "Top area uses unified navigation (TopBar); content renders in the slot below.",
     children: (
       <div className="border-sidebar-border text-muted-foreground flex min-h-[200px] items-center justify-center rounded-xl border border-dashed border-white/[0.12] bg-muted/20 text-sm">
         Page content slot

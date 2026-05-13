@@ -18,8 +18,8 @@ function PipelineDealPreview() {
         <CardDescription>Legal & pricing · Wave Payments</CardDescription>
       </CardHeader>
       <CardContent className="text-muted-foreground text-sm leading-relaxed">
-        Probability-adjusted pipeline spotlight kartītē — līdzīga struktūra kā
-        Pipeline skats.
+        Probability-adjusted pipeline spotlight card, similar structure to the
+        Pipeline view.
       </CardContent>
       <CardFooter className="justify-end gap-2">
         <Button variant="outline" size="sm">

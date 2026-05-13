@@ -165,7 +165,7 @@ export function AddCustomerSheet() {
                               [f.key]: e.target.value,
                             }))
                           }
-                          placeholder="—"
+                          placeholder="-"
                           autoComplete="off"
                         />
                       </div>

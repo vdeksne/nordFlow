@@ -1,6 +1,6 @@
 import type { CustomerPortfolio } from "./types";
 
-/** Row 1 merged headers — Klientu uzskaites reģistrs_template.xlsx */
+/** Row 1 merged headers, spreadsheet portfolio template layout */
 export const CUSTOMER_PORTFOLIO_HEADER_GROUPS = [
   { title: "Company info", span: 6 },
   { title: "Client identification (KYC)", span: 5 },
@@ -90,7 +90,7 @@ export function portfolioCellValue(
 ): string {
   const raw = row[col.key];
   if (raw === null || raw === undefined) {
-    return "—";
+    return "-";
   }
   if (typeof raw === "number") {
     if (col.format === "eur") {
@@ -99,5 +99,5 @@ export function portfolioCellValue(
     return String(raw);
   }
   const s = String(raw).trim();
-  return s === "" ? "—" : s;
+  return s === "" ? "-" : s;
 }

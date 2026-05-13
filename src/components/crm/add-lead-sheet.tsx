@@ -14,35 +14,36 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import type { LeadStage } from "@/lib/crm/types";
 import { cn } from "@/lib/utils";
 
-import {
-  TASK_PRIORITY_OPTIONS,
-  defaultDueIso,
-  fromDatetimeLocalValue,
-  toDatetimeLocalValue,
-} from "./task-form-shared";
-import { useTasks } from "./tasks-context";
+import { useLeads } from "./leads-context";
 
-export function AddTaskSheet() {
-  const { addTask } = useTasks();
+const LEAD_STAGE_OPTIONS: { value: LeadStage; label: string }[] = [
+  { value: "new", label: "New" },
+  { value: "contacted", label: "Contacted" },
+  { value: "qualified", label: "Qualified" },
+  { value: "lost", label: "Lost" },
+];
+
+export function AddLeadSheet() {
+  const { addLead } = useLeads();
   const [open, setOpen] = useState(false);
-  const [title, setTitle] = useState("");
-  const [relatedTo, setRelatedTo] = useState("");
-  const [dueLocal, setDueLocal] = useState(() =>
-    toDatetimeLocalValue(defaultDueIso()),
-  );
-  const [priority, setPriority] =
-    useState<(typeof TASK_PRIORITY_OPTIONS)[number]["value"]>("medium");
-  const [assignee, setAssignee] = useState("");
+  const [company, setCompany] = useState("");
+  const [contactName, setContactName] = useState("");
+  const [email, setEmail] = useState("");
+  const [stage, setStage] = useState<LeadStage>("new");
+  const [valueEur, setValueEur] = useState("");
+  const [owner, setOwner] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   const reset = useCallback(() => {
-    setTitle("");
-    setRelatedTo("");
-    setDueLocal(toDatetimeLocalValue(defaultDueIso()));
-    setPriority("medium");
-    setAssignee("");
+    setCompany("");
+    setContactName("");
+    setEmail("");
+    setStage("new");
+    setValueEur("");
+    setOwner("");
     setError(null);
   }, []);
 
@@ -55,39 +56,32 @@ export function AddTaskSheet() {
   );
 
   const handleSubmit = useCallback(() => {
-    const trimmed = title.trim();
-    if (!trimmed) {
-      setError("Add a title so future-you knows what to ship.");
+    const co = company.trim();
+    if (!co) {
+      setError("Company name is required.");
       return;
     }
-    let dueIso: string;
-    try {
-      dueIso = fromDatetimeLocalValue(dueLocal);
-      if (Number.isNaN(new Date(dueIso).getTime())) {
-        setError("Pick a valid due date and time.");
-        return;
-      }
-    } catch {
-      setError("Pick a valid due date and time.");
-      return;
-    }
+    const parsed = Number(valueEur.replace(/\u00a0/g, "").replace(/\s/g, "").replace(",", "."));
+    const euros = Number.isFinite(parsed) ? parsed : 0;
 
-    addTask({
-      title: trimmed,
-      relatedTo,
-      dueAt: dueIso,
-      priority,
-      assignee,
+    addLead({
+      company: co,
+      contactName,
+      email,
+      stage,
+      valueEur: euros,
+      owner,
     });
     handleOpenChange(false);
   }, [
-    addTask,
-    assignee,
-    dueLocal,
+    addLead,
+    company,
+    contactName,
+    email,
     handleOpenChange,
-    priority,
-    relatedTo,
-    title,
+    owner,
+    stage,
+    valueEur,
   ]);
 
   return (
@@ -97,76 +91,90 @@ export function AddTaskSheet() {
         className={cn(buttonVariants({ variant: "default" }), "gap-1.5")}
       >
         <Plus className="size-4" aria-hidden />
-        Add task
+        Add lead
       </SheetTrigger>
       <SheetContent
         side="right"
         className="flex h-full w-full flex-col gap-0 sm:max-w-md"
       >
         <SheetHeader className="border-sidebar-border shrink-0 border-b px-6 py-4">
-          <SheetTitle>New task</SheetTitle>
+          <SheetTitle>New lead</SheetTitle>
           <SheetDescription>
-            Capture one concrete next step. It lands in Today or Ahead from its
-            due time.
+            Capture a prospect. It appears in the leads table immediately.
           </SheetDescription>
         </SheetHeader>
 
         <div className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto px-6 py-5">
           <div className="space-y-1.5">
             <label
-              htmlFor="task-title"
+              htmlFor="lead-company"
               className="text-foreground text-xs font-semibold"
             >
-              Title<span className="text-primary"> *</span>
+              Company<span className="text-primary"> *</span>
             </label>
             <Input
-              id="task-title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="e.g. Send pricing recap, Baltic Freight"
+              id="lead-company"
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              placeholder="e.g. Nordic SaaS Labs"
               className="h-10 rounded-xl border-white/[0.08] bg-[color-mix(in_oklab,var(--card)_55%,transparent)]"
-              autoComplete="off"
+              autoComplete="organization"
             />
           </div>
 
           <div className="space-y-1.5">
             <label
-              htmlFor="task-related"
+              htmlFor="lead-contact"
               className="text-muted-foreground text-xs font-medium"
             >
-              Related to
+              Contact name
             </label>
             <Input
-              id="task-related"
-              value={relatedTo}
-              onChange={(e) => setRelatedTo(e.target.value)}
-              placeholder="Deal · Customer · Lead…"
+              id="lead-contact"
+              value={contactName}
+              onChange={(e) => setContactName(e.target.value)}
+              placeholder="Primary contact"
               className="h-10 rounded-xl border-white/[0.08] bg-[color-mix(in_oklab,var(--card)_55%,transparent)]"
-              autoComplete="off"
+              autoComplete="name"
+            />
+          </div>
+
+          <div className="space-y-1.5">
+            <label
+              htmlFor="lead-email"
+              className="text-muted-foreground text-xs font-medium"
+            >
+              Email
+            </label>
+            <Input
+              id="lead-email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="name@company.com"
+              className="h-10 rounded-xl border-white/[0.08] bg-[color-mix(in_oklab,var(--card)_55%,transparent)]"
+              autoComplete="email"
             />
           </div>
 
           <div className="space-y-2">
             <span className="text-muted-foreground text-xs font-medium">
-              Priority
+              Stage
             </span>
             <div className="flex flex-wrap gap-2">
-              {TASK_PRIORITY_OPTIONS.map((opt) => (
+              {LEAD_STAGE_OPTIONS.map((opt) => (
                 <button
                   key={opt.value}
                   type="button"
-                  onClick={() => setPriority(opt.value)}
+                  onClick={() => setStage(opt.value)}
                   className={cn(
                     buttonVariants({ variant: "outline", size: "sm" }),
                     "rounded-xl border-white/[0.1]",
-                    priority === opt.value &&
+                    stage === opt.value &&
                       "border-primary/45 bg-primary/[0.12] text-primary",
                   )}
                 >
                   {opt.label}
-                  <span className="text-muted-foreground ml-1 text-[10px] font-normal">
-                    {opt.hint}
-                  </span>
                 </button>
               ))}
             </div>
@@ -174,31 +182,33 @@ export function AddTaskSheet() {
 
           <div className="space-y-1.5">
             <label
-              htmlFor="task-due"
+              htmlFor="lead-value"
               className="text-muted-foreground text-xs font-medium"
             >
-              Due
+              Est. value (EUR)
             </label>
             <Input
-              id="task-due"
-              type="datetime-local"
-              value={dueLocal}
-              onChange={(e) => setDueLocal(e.target.value)}
-              className="h-10 rounded-xl border-white/[0.08] bg-[color-mix(in_oklab,var(--card)_55%,transparent)] [color-scheme:dark]"
+              id="lead-value"
+              inputMode="decimal"
+              value={valueEur}
+              onChange={(e) => setValueEur(e.target.value)}
+              placeholder="0"
+              className="h-10 rounded-xl border-white/[0.08] bg-[color-mix(in_oklab,var(--card)_55%,transparent)] tabular-nums"
+              autoComplete="off"
             />
           </div>
 
           <div className="space-y-1.5">
             <label
-              htmlFor="task-assignee"
+              htmlFor="lead-owner"
               className="text-muted-foreground text-xs font-medium"
             >
-              Assignee
+              Owner
             </label>
             <Input
-              id="task-assignee"
-              value={assignee}
-              onChange={(e) => setAssignee(e.target.value)}
+              id="lead-owner"
+              value={owner}
+              onChange={(e) => setOwner(e.target.value)}
               placeholder="Defaults to You"
               className="h-10 rounded-xl border-white/[0.08] bg-[color-mix(in_oklab,var(--card)_55%,transparent)]"
               autoComplete="name"
@@ -219,7 +229,7 @@ export function AddTaskSheet() {
             Cancel
           </Button>
           <Button type="button" onClick={handleSubmit}>
-            Add task
+            Add lead
           </Button>
         </SheetFooter>
       </SheetContent>

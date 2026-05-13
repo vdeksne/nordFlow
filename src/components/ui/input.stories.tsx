@@ -7,7 +7,7 @@ const meta = {
   component: Input,
   tags: ["autodocs"],
   args: {
-    placeholder: "Meklēt klientu…",
+    placeholder: "Search customers…",
     className: "max-w-sm rounded-xl",
   },
 } satisfies Meta<typeof Input>;

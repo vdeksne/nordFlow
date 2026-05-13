@@ -28,7 +28,7 @@ export const SidebarAndTopBar: Story = {
       <div className="flex min-w-0 flex-1 flex-col bg-background">
         <TopBar
           title="Dashboard"
-          subtitle="Composite preview — sidebar navigation + header chrome."
+          subtitle="Composite preview, sidebar navigation + header chrome."
         />
         <div className="text-muted-foreground flex flex-1 items-center justify-center p-8 text-sm">
           Route content area

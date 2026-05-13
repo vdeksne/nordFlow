@@ -121,7 +121,7 @@ export function TaskDetailSheet({
                 {title.trim() || "Task details"}
               </SheetTitle>
               <SheetDescription>
-                Full view — edit fields, toggle completion, or delete from your
+                Full view, edit fields, toggle completion, or delete from your
                 queue.
               </SheetDescription>
             </SheetHeader>

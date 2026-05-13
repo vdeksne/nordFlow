@@ -4,8 +4,8 @@ import { CrmPage } from "@/components/crm/crm-page";
 export default function CustomersPage() {
   return (
     <CrmPage
-      title="Klientu portfelis"
-      subtitle="Visas kolonnas no «Klientu uzskaites reģistrs» veidlapas (KLIENTU PORTFELIS). Pievienojiet klientus vai importējiet CSV. Klikšķiniet uz rindas, lai atvērtu pilnekrāna kartīti."
+      title="Customer portfolio"
+      subtitle="All columns from the client register portfolio sheet. Add customers manually or import CSV. Tap or click a row to open the full-screen record."
     >
       <CustomersPageClient />
     </CrmPage>

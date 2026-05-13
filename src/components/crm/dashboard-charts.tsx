@@ -292,7 +292,7 @@ export function DashboardCharts({ deals, leads }: DashboardChartsProps) {
             Momentum cockpit
           </p>
           <h2 className="text-foreground text-xl font-semibold tracking-tight md:text-2xl">
-            See the upside you&apos;re building — then push one more deal forward.
+            See the upside you&apos;re building, then push one more deal forward.
           </h2>
           <p className="text-muted-foreground max-w-3xl text-sm leading-relaxed">
             Composition of booked revenue, recurring portfolio, probability-weighted
@@ -399,7 +399,7 @@ export function DashboardCharts({ deals, leads }: DashboardChartsProps) {
               Revenue mix
             </CardTitle>
             <CardDescription>
-              Where value sits today — wins, fees, forecast, lead funnel.
+              Where value sits today, wins, fees, forecast, lead funnel.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex min-h-[280px] flex-1 flex-col items-center justify-center pt-2">
@@ -454,7 +454,7 @@ export function DashboardCharts({ deals, leads }: DashboardChartsProps) {
               </ul>
             ) : (
               <p className="text-muted-foreground mt-3 px-2 text-center text-xs leading-relaxed">
-                Layer wins, portfolio fees, and pipeline rows — your donut fills in
+                Layer wins, portfolio fees, and pipeline rows, your donut fills in
                 automatically.
               </p>
             )}
@@ -467,7 +467,7 @@ export function DashboardCharts({ deals, leads }: DashboardChartsProps) {
               Open pipeline · raw value
             </CardTitle>
             <CardDescription>
-              Stage bars sized by deal value — chase the fat bars first.
+              Stage bars sized by deal value, chase the fat bars first.
             </CardDescription>
           </CardHeader>
           <CardContent className="h-[280px] min-w-0 pt-2">
@@ -522,7 +522,7 @@ export function DashboardCharts({ deals, leads }: DashboardChartsProps) {
               Lead funnel heat
             </CardTitle>
             <CardDescription>
-              Count & attach value — warm up everything below “Qualified”.
+              Count & attach value, warm up everything below “Qualified”.
             </CardDescription>
           </CardHeader>
           <CardContent className="h-[280px] min-w-0 pt-2">
@@ -569,8 +569,8 @@ export function DashboardCharts({ deals, leads }: DashboardChartsProps) {
                 Execution orbits
               </CardTitle>
               <CardDescription>
-                Gamified scores from tasks, win mix, and qualification density —
-                close the loop to push these rings wider.
+                Gamified scores from tasks, win mix, and qualification density.
+                Close the loop to push these rings wider.
               </CardDescription>
             </div>
             <p className="text-primary text-[10px] font-semibold tracking-[0.2em] uppercase">
@@ -582,19 +582,19 @@ export function DashboardCharts({ deals, leads }: DashboardChartsProps) {
               <GaugeRing
                 value={executionScore}
                 label="Task velocity"
-                hint="Done vs total — ship small completions daily."
+                hint="Done vs total, ship small completions daily."
                 icon={Zap}
               />
               <GaugeRing
                 value={winMixScore}
                 label="Win mix"
-                hint="Share of deals already won — defend & expand."
+                hint="Share of deals already won, defend & expand."
                 icon={Flame}
               />
               <GaugeRing
                 value={funnelHeatScore}
                 label="Qualification heat"
-                hint="Qualified share of leads — tighten handoffs."
+                hint="Qualified share of leads, tighten handoffs."
                 icon={Orbit}
               />
             </div>

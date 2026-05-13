@@ -220,7 +220,7 @@ export function PipelineBoard({ deals = defaultDeals }: PipelineBoardProps) {
                   </p>
                 </div>
                 <span className="text-muted-foreground text-[11px] tabular-nums">
-                  {column.items.length > 0 ? formatEur(columnTotal) : "—"}
+                  {column.items.length > 0 ? formatEur(columnTotal) : "-"}
                 </span>
               </header>
 
