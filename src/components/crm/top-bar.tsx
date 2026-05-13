@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { NordflowLogo } from "@/components/crm/nordflow-logo";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { TopBarProfileLink } from "@/components/crm/top-bar-profile-link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Bell, Search } from "lucide-react";
@@ -54,11 +54,7 @@ export function TopBar({ title, subtitle }: TopBarProps) {
           >
             <Bell className="size-4" />
           </Button>
-          <Avatar className="ring-primary/25 size-11 ring-2 sm:size-10">
-            <AvatarFallback className="bg-accent text-foreground text-xs font-semibold">
-              VK
-            </AvatarFallback>
-          </Avatar>
+          <TopBarProfileLink />
         </div>
       </div>
     </header>

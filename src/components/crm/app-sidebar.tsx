@@ -7,6 +7,7 @@ import {
   KanbanSquare,
   LayoutDashboard,
   UserPlus,
+  UserRound,
   Users,
 } from "lucide-react";
 
@@ -19,6 +20,7 @@ const nav = [
   { href: "/leads", label: "Leads", icon: UserPlus },
   { href: "/pipeline", label: "Pipeline", icon: KanbanSquare },
   { href: "/tasks", label: "Tasks", icon: CheckSquare },
+  { href: "/profile", label: "Profile", icon: UserRound },
 ] as const;
 
 export function AppSidebar() {
@@ -48,7 +50,8 @@ export function AppSidebar() {
         </p>
         {nav.map(({ href, label, icon: Icon }) => {
           const active =
-            pathname === href || (href !== "/dashboard" && pathname.startsWith(href));
+            pathname === href ||
+            (href !== "/dashboard" && href !== "/profile" && pathname.startsWith(href));
 
           return (
             <Link
