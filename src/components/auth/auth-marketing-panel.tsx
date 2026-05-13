@@ -27,19 +27,60 @@ type AuthMarketingPanelProps = {
   className?: string;
 };
 
+/** Login: ultra-minimal brand strip. Register: fuller story + bullets. */
 export function AuthMarketingPanel({
   variant,
   className,
 }: AuthMarketingPanelProps) {
-  const headline =
-    variant === "login"
-      ? "Sign in to Nordflow CRM"
-      : "Create your Nordflow workspace";
+  if (variant === "login") {
+    return (
+      <div
+        className={cn(
+          "relative hidden overflow-hidden lg:flex lg:flex-col lg:justify-between lg:border-r lg:border-white/[0.04] lg:p-12 xl:p-16",
+          className,
+        )}
+      >
+        <div className="pointer-events-none absolute inset-0" aria-hidden>
+          <div
+            className="absolute top-1/2 left-1/2 size-[min(90vw,560px)] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-40 blur-[120px]"
+            style={{
+              background:
+                "radial-gradient(circle, color-mix(in oklab, var(--primary) 16%, transparent) 0%, transparent 62%)",
+            }}
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(165deg,rgb(255_255_255/0.03)_0%,transparent_45%)]" />
+        </div>
 
+        <div className="relative">
+          <Link
+            href="/dashboard"
+            className="focus-visible:ring-primary inline-block rounded-md focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none"
+          >
+            <NordflowLogo priority className="max-h-9 max-w-[148px] opacity-95" />
+          </Link>
+        </div>
+
+        <div className="relative mt-auto max-w-[320px] space-y-8 pt-24">
+          <p className="text-foreground text-[clamp(2rem,4vw,2.75rem)] font-light leading-[1.08] tracking-tight">
+            Revenue,
+            <br />
+            <span className="text-primary/95 font-normal">clarified.</span>
+          </p>
+          <p className="text-muted-foreground text-[13px] leading-relaxed tracking-wide">
+            Demo shell. Wire auth when you ship.
+          </p>
+        </div>
+
+        <p className="text-muted-foreground/80 relative pt-16 text-[11px] tracking-wide lg:pt-8">
+          © {new Date().getFullYear()} Nordflow
+        </p>
+      </div>
+    );
+  }
+
+  const headline = "Create your Nordflow workspace";
   const sub =
-    variant === "login"
-      ? "Modern cockpit for customers, leads, deals, and execution."
-      : "Mock signup flow, wire Supabase Auth or Clerk when you go live.";
+    "Mock signup flow, wire Supabase Auth or Clerk when you go live.";
 
   return (
     <div

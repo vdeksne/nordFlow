@@ -2,13 +2,24 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Lock, Mail } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useCallback, useState } from "react";
 
 import { NordflowLogo } from "@/components/crm/nordflow-logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+
+/** Legible on dark UI: tinted surface, visible rim, bright placeholders. */
+const fieldClass = cn(
+  "h-12 w-full rounded-xl px-4 text-[15px] text-foreground",
+  "border border-white/[0.12] bg-[color-mix(in_oklab,var(--secondary)_72%,transparent)]",
+  "shadow-[inset_0_1px_0_0_rgb(255_255_255/0.05)]",
+  "[&::placeholder]:text-foreground/55 [&::placeholder]:opacity-100",
+  "transition-[border-color,box-shadow,background-color]",
+  "focus-visible:border-primary/55 focus-visible:ring-2 focus-visible:ring-primary/25 focus-visible:ring-offset-0 focus-visible:outline-none",
+  "dark:bg-[color-mix(in_oklab,var(--secondary)_65%,transparent)]",
+);
 
 export function LoginForm({ className }: { className?: string }) {
   const router = useRouter();
@@ -20,166 +31,147 @@ export function LoginForm({ className }: { className?: string }) {
   }, []);
 
   return (
-    <div className={cn("mx-auto w-full max-w-[400px]", className)}>
-      <div className="mb-8 lg:hidden">
+    <div className={cn("mx-auto w-full max-w-[340px]", className)}>
+      {/* Mobile: logo only */}
+      <div className="mb-12 flex justify-center lg:hidden">
         <Link
           href="/dashboard"
-          className="focus-visible:ring-primary inline-block rounded-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+          className="focus-visible:ring-primary rounded-md focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+          aria-label="Nordflow · Dashboard"
         >
-          <NordflowLogo priority />
+          <NordflowLogo priority className="max-h-8" />
         </Link>
       </div>
 
-      <div className="rounded-[1.25rem] border border-white/[0.08] bg-[color-mix(in_oklab,var(--card)_88%,transparent)] p-8 shadow-[0_32px_90px_-52px_color-mix(in_oklab,var(--primary)_45%,transparent)] backdrop-blur-xl sm:p-9">
-        <p className="text-primary mb-2 text-[11px] font-bold tracking-[0.2em] uppercase">
-          Preview
+      <div className="space-y-1 lg:pt-4">
+        <p className="text-muted-foreground font-mono text-[10px] tracking-[0.28em] uppercase">
+          Sign in
         </p>
-        <h2 className="text-foreground text-2xl font-semibold tracking-tight">
-          {phase === "form" ? "Welcome back" : "Almost there"}
-        </h2>
-        <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
+        <h1 className="text-foreground text-[1.65rem] font-medium tracking-[-0.03em] sm:text-3xl">
+          {phase === "form" ? "Welcome back" : "Ready"}
+        </h1>
+        <p className="text-muted-foreground pt-2 text-[13px] leading-relaxed">
           {phase === "form"
-            ? "Sign in with your work email. Auth is UI-only until you connect a provider."
-            : "In production this step exchanges credentials for a secure session."}
-        </p>
-
-        {phase === "preview" ? (
-          <div className="mt-8 space-y-4">
-            <div className="rounded-xl border border-primary/25 bg-primary/[0.08] px-4 py-3 text-sm leading-relaxed text-foreground">
-              Mock login, no data sent. Hook this form to Supabase Auth,
-              Clerk, or Auth0 next.
-            </div>
-            <Button
-              type="button"
-              className="h-11 w-full rounded-xl gap-2 text-base font-semibold"
-              onClick={() => router.push("/dashboard")}
-            >
-              Continue to app (demo)
-              <ArrowRight className="size-4" aria-hidden />
-            </Button>
-            <button
-              type="button"
-              className="text-muted-foreground hover:text-foreground w-full text-center text-sm font-medium transition-colors"
-              onClick={() => setPhase("form")}
-            >
-              Back to form
-            </button>
-          </div>
-        ) : (
-          <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
-            <div className="space-y-2">
-              <label
-                htmlFor="login-email"
-                className="text-foreground text-xs font-semibold"
-              >
-                Work email
-              </label>
-              <div className="relative">
-                <Mail
-                  className="text-muted-foreground pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2"
-                  aria-hidden
-                />
-                <Input
-                  id="login-email"
-                  type="email"
-                  autoComplete="email"
-                  placeholder="you@company.com"
-                  className="h-11 rounded-xl border-white/[0.1] bg-[color-mix(in_oklab,var(--card)_40%,transparent)] pl-10 text-base md:text-sm"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex items-center justify-between gap-2">
-                <label
-                  htmlFor="login-password"
-                  className="text-foreground text-xs font-semibold"
-                >
-                  Password
-                </label>
-                <button
-                  type="button"
-                  className="text-primary hover:text-primary/85 text-xs font-medium transition-colors"
-                >
-                  Forgot password?
-                </button>
-              </div>
-              <div className="relative">
-                <Lock
-                  className="text-muted-foreground pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2"
-                  aria-hidden
-                />
-                <Input
-                  id="login-password"
-                  type="password"
-                  autoComplete="current-password"
-                  placeholder="••••••••"
-                  className="h-11 rounded-xl border-white/[0.1] bg-[color-mix(in_oklab,var(--card)_40%,transparent)] pl-10 text-base md:text-sm"
-                />
-              </div>
-            </div>
-
-            <label className="text-muted-foreground flex cursor-pointer items-center gap-2.5 text-sm">
-              <input
-                type="checkbox"
-                className="border-input bg-background accent-primary size-4 rounded border"
-              />
-              Remember this device
-            </label>
-
-            <Button
-              type="submit"
-              className="h-11 w-full rounded-xl text-base font-semibold shadow-[0_0_40px_-14px_var(--primary)]"
-            >
-              Sign in
-            </Button>
-
-            <div className="relative py-2">
-              <div className="absolute inset-0 flex items-center">
-                <span className="border-sidebar-border w-full border-t border-white/[0.06]" />
-              </div>
-              <div className="relative flex justify-center text-xs font-medium">
-                <span className="bg-[color-mix(in_oklab,var(--card)_88%,transparent)] text-muted-foreground px-3">
-                  Or continue with
-                </span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <Button
-                type="button"
-                variant="outline"
-                className="h-11 rounded-xl border-white/[0.1]"
-                onClick={() => setPhase("preview")}
-              >
-                Google
-              </Button>
-              <Button
-                type="button"
-                variant="outline"
-                className="h-11 rounded-xl border-white/[0.1]"
-                onClick={() => setPhase("preview")}
-              >
-                Microsoft
-              </Button>
-            </div>
-          </form>
-        )}
-
-        <p className="text-muted-foreground mt-8 text-center text-sm">
-          No account?{" "}
-          <Link
-            href="/register"
-            className="text-primary hover:text-primary/85 font-semibold transition-colors"
-          >
-            Register
-          </Link>
+            ? "UI-only preview. Connect your auth provider later."
+            : "Credentials would post here in production."}
         </p>
       </div>
 
-      <p className="text-muted-foreground mt-8 text-center text-xs">
-        <Link href="/dashboard" className="underline-offset-4 hover:underline">
-          Skip preview → Dashboard
+      {phase === "preview" ? (
+        <div className="mt-12 space-y-6">
+          <p className="text-foreground/90 border-l-2 border-primary/50 pl-4 text-sm leading-relaxed">
+            Mock login, no data sent. Plug in Supabase Auth, Clerk, or Auth0.
+          </p>
+          <Button
+            type="button"
+            className="h-12 w-full rounded-full text-[15px] font-medium"
+            onClick={() => router.push("/dashboard")}
+          >
+            Continue
+            <ArrowRight className="size-4 opacity-90" aria-hidden />
+          </Button>
+          <button
+            type="button"
+            className="text-muted-foreground hover:text-foreground w-full text-center text-[13px] transition-colors"
+            onClick={() => setPhase("form")}
+          >
+            Back
+          </button>
+        </div>
+      ) : (
+        <form className="mt-12 space-y-8" onSubmit={handleSubmit}>
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <label htmlFor="login-email" className="sr-only">
+                Email
+              </label>
+              <Input
+                id="login-email"
+                type="email"
+                autoComplete="email"
+                placeholder="Email"
+                className={fieldClass}
+              />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="login-password" className="sr-only">
+                Password
+              </label>
+              <Input
+                id="login-password"
+                type="password"
+                autoComplete="current-password"
+                placeholder="Password"
+                className={fieldClass}
+              />
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between gap-3 text-[13px]">
+            <label className="text-muted-foreground flex cursor-pointer items-center gap-2.5">
+              <input
+                type="checkbox"
+                className="border-white/15 accent-primary size-3.5 rounded border bg-transparent"
+              />
+              <span>Remember</span>
+            </label>
+            <button
+              type="button"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
+              Forgot?
+            </button>
+          </div>
+
+          <Button
+            type="submit"
+            className="h-12 w-full rounded-full text-[15px] font-medium tracking-wide"
+          >
+            Continue
+          </Button>
+
+          <div className="flex items-center gap-4 pt-2">
+            <span className="bg-white/[0.06] h-px flex-1" />
+            <span className="text-muted-foreground text-[11px] tracking-[0.2em] uppercase">
+              Or
+            </span>
+            <span className="bg-white/[0.06] h-px flex-1" />
+          </div>
+
+          <div className="flex gap-3">
+            <Button
+              type="button"
+              variant="ghost"
+              className="text-muted-foreground hover:text-foreground h-11 flex-1 rounded-full border border-white/[0.06] bg-transparent text-[13px] font-normal"
+              onClick={() => setPhase("preview")}
+            >
+              Google
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              className="text-muted-foreground hover:text-foreground h-11 flex-1 rounded-full border border-white/[0.06] bg-transparent text-[13px] font-normal"
+              onClick={() => setPhase("preview")}
+            >
+              Microsoft
+            </Button>
+          </div>
+        </form>
+      )}
+
+      <p className="text-muted-foreground mt-14 text-center text-[13px]">
+        New here?{" "}
+        <Link
+          href="/register"
+          className="text-foreground hover:text-primary font-medium underline-offset-4 transition-colors hover:underline"
+        >
+          Create account
+        </Link>
+      </p>
+
+      <p className="text-muted-foreground/70 mt-8 text-center text-[11px]">
+        <Link href="/dashboard" className="transition-colors hover:text-foreground">
+          Skip to dashboard
         </Link>
       </p>
     </div>
