@@ -1,3 +1,4 @@
+import { AiAssistantDock } from "@/components/crm/ai-assistant";
 import { AppSidebar } from "@/components/crm/app-sidebar";
 import { CustomersProvider } from "@/components/crm/customers-context";
 import { DealsProvider } from "@/components/crm/deals-context";
@@ -26,6 +27,7 @@ export default function CrmLayout({
                 {children}
               </div>
             </div>
+            <AiAssistantDock />
           </TasksProvider>
         </DealsProvider>
       </LeadsProvider>
