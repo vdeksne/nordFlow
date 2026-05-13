@@ -13,21 +13,21 @@ type TopBarProps = {
 
 export function TopBar({ title, subtitle }: TopBarProps) {
   return (
-    <header className="sticky top-0 z-30 flex flex-col gap-4 border-b border-white/[0.06] bg-[color-mix(in_oklab,var(--background)_82%,transparent)] px-4 py-4 backdrop-blur-xl supports-[backdrop-filter]:bg-[color-mix(in_oklab,var(--background)_72%,transparent)] sm:flex-row sm:items-start sm:justify-between sm:px-8 sm:py-5">
-      <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-start sm:gap-5">
+    <header className="relative z-30 flex flex-col gap-2.5 border-b border-white/[0.06] bg-[color-mix(in_oklab,var(--background)_82%,transparent)] px-4 py-3 backdrop-blur-xl supports-[backdrop-filter]:bg-[color-mix(in_oklab,var(--background)_72%,transparent)] md:sticky md:top-0 md:gap-4 md:py-5 sm:flex-row sm:items-start sm:justify-between sm:px-8">
+      <div className="flex min-w-0 flex-col gap-2 sm:flex-row sm:items-start sm:gap-5">
         <Link
           href="/dashboard"
-          className="focus-visible:ring-primary inline-flex w-fit shrink-0 rounded-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none"
+          className="focus-visible:ring-primary hidden w-fit shrink-0 rounded-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none lg:inline-flex"
           aria-label="Nordflow · Dashboard"
         >
           <NordflowLogo className="max-h-8 sm:max-h-9" />
         </Link>
-        <div className="min-w-0 flex-1 space-y-1">
-          <h1 className="text-foreground text-lg font-semibold tracking-[-0.02em] sm:text-[1.65rem]">
+        <div className="min-w-0 flex-1 space-y-0.5 sm:space-y-1">
+          <h1 className="text-foreground text-base font-semibold tracking-[-0.02em] sm:text-lg md:text-[1.65rem]">
             {title}
           </h1>
           {subtitle ? (
-            <p className="text-muted-foreground max-w-xl text-sm leading-relaxed">
+            <p className="text-muted-foreground max-w-xl text-xs leading-relaxed max-[380px]:hidden sm:text-sm">
               {subtitle}
             </p>
           ) : null}
